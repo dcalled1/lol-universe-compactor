@@ -1,7 +1,7 @@
 {
   "name": "lol-universe-compactor",
   "version": "1.0.0",
-  "description": "## Requeriments - The user must be capable of obtain a list of items (with filters) in the \"Explore\" section of LOL Universe web page. - The user must be capable of obtain a list of items (with filters) in the \"Champions\" section of LOL Universe web page. - The user must be capable of obtain a list of items (with filters) in the \"Regions\" section of LOL Universe web page. - The user must be capable of change the language of the content. - The user must be capable of access the content (stories, bibliographies, etc). - The user must be capable of get the content in PDF and EPUB format.",
+  "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/dcalled1/lol-universe-compactor#readme",
   "devDependencies": {
-    "@types/node": "^15.12.5",
+    "@types/node": "^15.14.1",
+    "@types/puppeteer": "^5.4.3",
     "nodemon": "^2.0.9",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "puppeteer": "^10.1.0"
+  }
 }
