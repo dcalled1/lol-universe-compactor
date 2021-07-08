@@ -2,38 +2,54 @@ import { Region } from "./region";
 
 
 export class Champion {
-    private name: string;
-    private region?: Region;
-    private bio: string;
-    private url: string;
-    private relatedChamps: Champion[]
+    private _name: string;
+    private _region!: Region;
+    private _bio: string;
+    private _url: string;
+    private _relatedChamps: Champion[]
 
     constructor(name: string, bio: string, url: string, region?: Region, relatedChamps?: Champion[]) {
-        this.name = name;
+        this._name = name;
+        if(region !== undefined) this._region = region;
+        this._bio = bio;
+        this._url = url;
+        this._relatedChamps = relatedChamps !== undefined ? relatedChamps : [];
+    }
+
+    //Setters
+    public set region(region: Region) {
         this.region = region;
-        this.bio = bio;
-        this.url = url;
-        this.relatedChamps = relatedChamps ? relatedChamps : [];
+    }
+
+    public set relatedChampions(champs: Champion[]) {
+        this._relatedChamps = champs;
     }
     
-    public getName() : string {
-        return this.name;
+    //Getters
+    public get name(): string {
+        return this._name;
     }
 
-    public getRegion() : Region | undefined {
-        return this.region;
+    public get region(): Region {
+        return this._region;
     }
 
-    public getBio(): string {
-        return this.bio;
+    public get bio(): string {
+        return this._bio;
     }
 
-    public getURL() : string {
-        return this.url;
+    public get URL(): string {
+        return this._url;
     }
 
-    public getRelatedChampions(): Champion[] {
-        return this.relatedChamps;
+    public get relatedChampions(): Champion[] {
+        return this._relatedChamps;
+    }
+
+    public equals(other: Champion): boolean {
+        return  this.name == other.name &&
+                this.bio  == other.bio  &&
+                this.URL  == other.URL;
     }
     
 }

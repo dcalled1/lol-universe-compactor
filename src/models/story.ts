@@ -3,45 +3,53 @@ import { Region } from "./region";
 
 
 export class Story {
-    private title: string;
-    private author: string;
-    private text: string;
-    private champions: (Champion | string)[];
-    private regions: (Region | string)[];
+    private _title: string;
+    private _author: string;
+    private _text: string;
+    private _champions: (Champion | string)[];
+    private _regions: (Region | string)[];
 
     constructor(title: string, author: string, text: string, champions?: (Champion | string)[], regions?: (Region | string)[]) {
-        this.title = title;
-        this.author = author;
-        this.text = text;
-        this.champions = champions ? champions : [];
-        this.regions = regions ? regions : [];
+        this._title = title;
+        this._author = author;
+        this._text = text;
+        this._champions = champions !== undefined ? champions : [];
+        this._regions = regions !== undefined ? regions : [];
     }
 
-    public setChampions(champions: [Champion | string]) {
-        this.champions = champions;
+    //Setters
+    public set champions(champions: (Champion | string)[]) {
+        this._champions = champions;
     }
 
-    public setRegions(regions: [Region | string]) {
-        this.regions = regions;
+    public set regions(regions: (Region | string)[]) {
+        this._regions = regions;
     }
 
-    public getTitle(): string {
-        return this.title;
+    //Getters
+    public get title(): string {
+        return this._title;
     }
 
-    public getAuthor(): string {
-        return this.author;
+    public get author(): string {
+        return this._author;
     }
     
-    public getText(): string {
-        return this.text;
+    public get text(): string {
+        return this._text;
     }
 
-    public getChampions(): (Champion | string)[] {
-        return this.champions;
+    public get champions(): (Champion | string)[] {
+        return this._champions;
     }
 
-    public getRegions(): (Region | string)[] {
-        return this.regions;
+    public get regions(): (Region | string)[] {
+        return this._regions;
+    }
+
+    public equals(other: Story):boolean {
+        return  this.title  == other.title &&
+                this.author == other.author &&
+                this.text   == other.text;
     }
 }

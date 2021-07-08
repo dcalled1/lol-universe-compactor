@@ -3,31 +3,46 @@ import { Story } from "./story";
 
 
 export class Region {
-    private name: string;
-    private description: string;
-    private champions: Champion[];
-    private stories: Story[];
+    private _name: string;
+    private _description: string;
+    private _champions: Champion[];
+    private _stories: Story[];
 
     constructor(name: string, description: string, champions?: Champion[], stories?: Story[]) {
-        this.name = name;
-        this.description = description;
-        this.champions = champions ? champions : [];
-        this.stories = stories ? stories : [];
+        this._name = name;
+        this._description = description;
+        this._champions = champions !== undefined ? champions : [];
+        this._stories = stories !== undefined ? stories : [];
     }
 
-    public getName(): string {
-        return this.name;
+    //Setters
+    public set champions(champions: Champion[]) {
+        this._champions = champions;
     }
 
-    public getDescription(): string {
-        return this.description;
+    public set stories(stories: Story[]) {
+        this._stories = stories;
     }
 
-    public getChampions(): Champion[] {
-        return this.champions;
+    //Getters
+    public get name(): string {
+        return this._name;
     }
 
-    public getStories(): Story[] {
-        return this.stories;
+    public get description(): string {
+        return this._description;
+    }
+
+    public get champions(): Champion[] {
+        return this._champions;
+    }
+
+    public get stories(): Story[] {
+        return this._stories;
+    }
+
+    public equals(other: Region): boolean {
+        return this.name == other.name &&
+        this.description == other.description;
     }
 }
