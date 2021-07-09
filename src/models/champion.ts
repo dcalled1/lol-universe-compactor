@@ -1,4 +1,4 @@
-import { Comparable } from "../common";
+import { Comparable, removeRepeated } from "../common";
 import { Region } from "./region";
 
 
@@ -14,7 +14,7 @@ export class Champion implements Comparable<Champion> {
         if(region !== undefined) this._region = region;
         this._bio = bio;
         this._url = url;
-        this._relatedChamps = relatedChamps;
+        this._relatedChamps = removeRepeated(relatedChamps);
     }
 
     //Setters
@@ -23,7 +23,7 @@ export class Champion implements Comparable<Champion> {
     }
 
     public set relatedChampions(champs: Champion[]) {
-        this._relatedChamps = champs;
+        this._relatedChamps = removeRepeated(champs);
     }
     
     //Getters

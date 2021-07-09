@@ -1,4 +1,4 @@
-import { Comparable, haveItem } from "../common";
+import { Comparable, haveItem, removeRepeated } from "../common";
 import { Champion } from "./champion";
 import { Region } from "./region";
 
@@ -14,15 +14,8 @@ export class Story implements Comparable<Story> {
         this._title = title;
         this._author = author;
         this._text = text;
-        this._champions = champions;
-        this._regions = regions;
-    }
-
-    public cleanChamps() {
-        let cleaned: Champion[] = [];
-        for(let champ of this.champions) {
-            
-        }
+        this._champions = removeRepeated(champions);
+        this._regions = removeRepeated(regions);
     }
 
     public addChampion(newChamp: Champion) {
@@ -30,13 +23,18 @@ export class Story implements Comparable<Story> {
             this.champions.push(newChamp)
     }
 
+    public addRegion(newRegion: Region) {
+        if(!haveItem(this.regions, newRegion))
+            this.regions.push(newRegion);
+    }
+
     //Setters
     public set champions(champions: Champion[]) {
-        this._champions = champions;
+        this._champions = removeRepeated(champions);
     }
 
     public set regions(regions: Region[]) {
-        this._regions = regions;
+        this._regions = removeRepeated(regions);
     }
 
     //Getters

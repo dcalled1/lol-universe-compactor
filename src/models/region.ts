@@ -1,4 +1,4 @@
-import { Comparable } from "../common";
+import { Comparable, removeRepeated } from "../common";
 import { Champion } from "./champion";
 import { Story } from "./story";
 
@@ -12,17 +12,17 @@ export class Region implements Comparable<Region> {
     constructor(name: string, description: string, champions: Champion[] = [], stories: Story[] = []) {
         this._name = name;
         this._description = description;
-        this._champions = champions;
-        this._stories = stories;
+        this._champions = removeRepeated(champions);
+        this._stories = removeRepeated(stories);
     }
 
     //Setters
     public set champions(champions: Champion[]) {
-        this._champions = champions;
+        this._champions = removeRepeated(champions);
     }
 
     public set stories(stories: Story[]) {
-        this._stories = stories;
+        this._stories = removeRepeated(stories);
     }
 
     //Getters
