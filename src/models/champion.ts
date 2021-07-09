@@ -1,19 +1,20 @@
+import { Comparable } from "../common";
 import { Region } from "./region";
 
 
-export class Champion {
+export class Champion implements Comparable<Champion> {
     private _name: string;
     private _region!: Region;
     private _bio: string;
     private _url: string;
     private _relatedChamps: Champion[]
 
-    constructor(name: string, bio: string, url: string, region?: Region, relatedChamps?: Champion[]) {
+    constructor(name: string, bio: string, url: string, region?: Region, relatedChamps: Champion[] = []) {
         this._name = name;
         if(region !== undefined) this._region = region;
         this._bio = bio;
         this._url = url;
-        this._relatedChamps = relatedChamps !== undefined ? relatedChamps : [];
+        this._relatedChamps = relatedChamps;
     }
 
     //Setters

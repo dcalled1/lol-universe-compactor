@@ -1,28 +1,41 @@
+import { Comparable, haveItem } from "../common";
 import { Champion } from "./champion";
 import { Region } from "./region";
 
 
-export class Story {
+export class Story implements Comparable<Story> {
     private _title: string;
     private _author: string;
     private _text: string;
-    private _champions: (Champion | string)[];
-    private _regions: (Region | string)[];
+    private _champions: Champion[];
+    private _regions: Region[];
 
-    constructor(title: string, author: string, text: string, champions?: (Champion | string)[], regions?: (Region | string)[]) {
+    constructor(title: string, author: string, text: string, champions: Champion[] = [], regions: Region[] = []) {
         this._title = title;
         this._author = author;
         this._text = text;
-        this._champions = champions !== undefined ? champions : [];
-        this._regions = regions !== undefined ? regions : [];
+        this._champions = champions;
+        this._regions = regions;
+    }
+
+    public cleanChamps() {
+        let cleaned: Champion[] = [];
+        for(let champ of this.champions) {
+            
+        }
+    }
+
+    public addChampion(newChamp: Champion) {
+        if(!haveItem(this.champions, newChamp))
+            this.champions.push(newChamp)
     }
 
     //Setters
-    public set champions(champions: (Champion | string)[]) {
+    public set champions(champions: Champion[]) {
         this._champions = champions;
     }
 
-    public set regions(regions: (Region | string)[]) {
+    public set regions(regions: Region[]) {
         this._regions = regions;
     }
 
@@ -39,11 +52,11 @@ export class Story {
         return this._text;
     }
 
-    public get champions(): (Champion | string)[] {
+    public get champions(): Champion[] {
         return this._champions;
     }
 
-    public get regions(): (Region | string)[] {
+    public get regions(): Region[] {
         return this._regions;
     }
 
