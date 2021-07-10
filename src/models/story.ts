@@ -1,40 +1,30 @@
-import { Comparable, haveItem, removeRepeated } from "../common";
+import { addToUniqueList, Comparable, removeRepeated } from "../common";
 import { Champion } from "./champion";
-import { Region } from "./region";
 
 
 export class Story implements Comparable<Story> {
     private _title: string;
     private _author: string;
     private _text: string;
+    private _url: string;
     private _champions: Champion[];
-    private _regions: Region[];
 
-    constructor(title: string, author: string, text: string, champions: Champion[] = [], regions: Region[] = []) {
+    constructor(title: string = "", author: string = "", text: string = "", 
+                url: string = "", champions: Champion[] = []) {
         this._title = title;
         this._author = author;
         this._text = text;
+        this._url = url;
         this._champions = removeRepeated(champions);
-        this._regions = removeRepeated(regions);
     }
 
-    public addChampion(newChamp: Champion) {
-        if(!haveItem(this.champions, newChamp))
-            this.champions.push(newChamp)
-    }
-
-    public addRegion(newRegion: Region) {
-        if(!haveItem(this.regions, newRegion))
-            this.regions.push(newRegion);
+    public addChampion(champ: Champion) {
+        addToUniqueList(this.champions, champ);
     }
 
     //Setters
     public set champions(champions: Champion[]) {
         this._champions = removeRepeated(champions);
-    }
-
-    public set regions(regions: Region[]) {
-        this._regions = removeRepeated(regions);
     }
 
     //Getters
@@ -54,9 +44,10 @@ export class Story implements Comparable<Story> {
         return this._champions;
     }
 
-    public get regions(): Region[] {
-        return this._regions;
+    public get url() {
+        return this._url;
     }
+
 
     public equals(other: Story):boolean {
         return  this.title  == other.title &&

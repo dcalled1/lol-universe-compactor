@@ -1,4 +1,4 @@
-import { Comparable, removeRepeated } from "../common";
+import { addToUniqueList, Comparable, removeRepeated } from "../common";
 import { Champion } from "./champion";
 import { Story } from "./story";
 
@@ -6,14 +6,25 @@ import { Story } from "./story";
 export class Region implements Comparable<Region> {
     private _name: string;
     private _description: string;
+    private _url: string;
     private _champions: Champion[];
     private _stories: Story[];
 
-    constructor(name: string, description: string, champions: Champion[] = [], stories: Story[] = []) {
+    constructor(name: string = "", description: string = "", url: string = "", 
+                champions: Champion[] = [], stories: Story[] = []) {
         this._name = name;
         this._description = description;
+        this._url = url;
         this._champions = removeRepeated(champions);
         this._stories = removeRepeated(stories);
+    }
+
+    public addChampion(champ: Champion) {
+        addToUniqueList(this.champions, champ);
+    }
+
+    public addStory(story: Story) {
+        addToUniqueList(this.stories, story);
     }
 
     //Setters
@@ -40,6 +51,10 @@ export class Region implements Comparable<Region> {
 
     public get stories(): Story[] {
         return this._stories;
+    }
+
+    public get URL(): string {
+        return this._url;
     }
 
     public equals(other: Region): boolean {
