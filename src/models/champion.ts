@@ -1,4 +1,4 @@
-import { addToUniqueList, Comparable, defaultRegion, removeRepeated } from "../common";
+import { addToUniqueList, Comparable, defaultRegion, removeRepeated } from "../common/common";
 import { Region } from "./region";
 import { Story } from "./story";
 

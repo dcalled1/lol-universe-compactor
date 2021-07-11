@@ -1,4 +1,4 @@
-import { addToUniqueList, Comparable, removeRepeated } from "../common";
+import { addToUniqueList, Comparable, removeRepeated } from "../common/common";
 import { Champion } from "./champion";
 
 

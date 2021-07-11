@@ -1,6 +1,6 @@
-import { Champion } from "./models/champion";
-import { Region } from "./models/region";
-import { Story } from "./models/story";
+import { Champion } from "../models/champion";
+import { Region } from "../models/region";
+import { Story } from "../models/story";
 
 export interface Comparable<T> {
     equals(other: T): boolean;
