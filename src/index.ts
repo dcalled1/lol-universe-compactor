@@ -1,5 +1,9 @@
-import { ListScrapper } from "./scrapper/scanners/ListScrapper";
+import { scrapDefaultList } from "./scrapper/scanners/ListScrapper";
+import sc from "./scrapper/scanners/config.json";
+
+const lang = "en_US";
+
+scrapDefaultList(`${sc.baseURL}/${lang}/${sc.champion.list.path}`, sc.champion.list.selector, sc.champion.list.name_tag);
 
 
-const scrapper = new ListScrapper();
-scrapper.scrapDefaultList('https://universe.leagueoflegends.com/en_US/champion/azir/', 'li.champion_1xlO', 'h5');
+
